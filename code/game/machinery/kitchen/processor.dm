@@ -67,8 +67,21 @@
 
 
 		slime
+			process(loc, what)
+				var/mob/living/carbon/slime/S = what
+				var/C = S.cores
+				if(S.stat != DEAD)
+					S.loc = loc
+					S.visible_message("<span class='notice'>[C] crawls free of the processor!</span>")
+					return
+				var/rating_amount = 0
+				for(var/i = 1, i <= C + rating_amount, i++)
+					new S.coretype(loc)
+					feedback_add_details("slime_core_harvested","[replacetext(S.colour," ","_")]")
+				..()
+
 			input = /mob/living/carbon/slime
-			output = /obj/item/weapon/reagent_containers/glass/beaker/slime
+			output = null
 
 		monkey
 			process(loc, what)
